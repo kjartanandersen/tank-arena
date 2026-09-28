@@ -1,0 +1,14 @@
+{
+  "$schema": "https://turborepo.com/schema.json",
+  "globalDependencies": ["tsconfig.base.json", ".nvmrc"],
+  "tasks": {
+    "transit": { "dependsOn": ["^transit"] },
+    "typecheck": { "dependsOn": ["transit"] },
+    "test": { "dependsOn": ["transit"] },
+    "build": {
+      "dependsOn": ["transit"],
+      "outputs": ["dist/**"],
+      "env": ["VITE_*"]
+    }
+  }
+}

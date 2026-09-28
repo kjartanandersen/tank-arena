@@ -1,0 +1,15 @@
+node_modules/
+dist/
+coverage/
+.turbo/
+.netlify/
+*.tsbuildinfo
+*.log
+.env
+.env.*
+!.env.example
+
+# Agents
+/.claude
+AGENTS.md
+CLAUDE.md
