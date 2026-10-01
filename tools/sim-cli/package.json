@@ -1,0 +1,23 @@
+{
+  "name": "@arena/sim-cli",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "start": "node src/main.ts",
+    "typecheck": "tsc -p ."
+  },
+  "dependencies": {
+    "@arena/game": "workspace:*"
+  },
+  "devDependencies": {
+    "@arena/game": "workspace:*",
+    "@arena/sim": "workspace:*",
+    "@types/node": "catalog:",
+    "typescript": "catalog:"
+  }
+}

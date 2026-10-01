@@ -1,0 +1,9 @@
+[build]
+  command = "pnpm turbo run build --filter=@arena/web"
+  publish = "apps/web/dist"
+
+# SPA fallback so deep links like /play load the app.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

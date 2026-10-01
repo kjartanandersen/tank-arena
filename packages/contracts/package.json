@@ -1,5 +1,5 @@
 {
-  "name": "@arena/sim",
+  "name": "@arena/contracts",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -11,11 +11,11 @@
     "typecheck": "tsc -p .",
     "test": "vitest run"
   },
-  "dependencies": {
-    "@arena/core": "workspace:*"
-  },
   "devDependencies": {
     "typescript": "catalog:",
     "vitest": "catalog:"
+  },
+  "dependencies": {
+    "zod": "^4.6.5"
   }
 }
