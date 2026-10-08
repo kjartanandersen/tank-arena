@@ -19,6 +19,6 @@
   "dependencies": {
     "@arena/contracts": "workspace:*",
     "@arena/game": "workspace:*",
-    "hono": "^4.13.12"
+    "hono": "catalog:"
   }
 }

@@ -12,10 +12,12 @@
     "@arena/contracts": "workspace:*",
     "@arena/game": "workspace:*",
     "@arena/server": "workspace:*",
+    "hono": "catalog:",
     "pixi.js": "^8.21.0",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
-    "react-router": "^8.4.0"
+    "react-router": "^8.4.0",
+    "zod": "catalog:"
   },
   "devDependencies": {
     "@netlify/functions": "^6.0.1",

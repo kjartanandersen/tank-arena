@@ -18,6 +18,7 @@
     "noImplicitOverride": true,
     "noFallthroughCasesInSwitch": true,
     "skipLibCheck": true,
-    "types": []
+    "types": [],
+    "paths": { "@arena/*": ["./packages/*/src/index.ts"] }
   }
 }
