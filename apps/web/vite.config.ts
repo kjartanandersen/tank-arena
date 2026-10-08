@@ -1,11 +1,9 @@
-import { defineConfig, type PluginOption } from 'vite';
-import react from '@vitejs/plugin-react';
-import netlify from '@netlify/vite-plugin';
+import { defineConfig } from 'vitest/config';
 
+// Separate from vite.config.ts on purpose: tests must not start the Netlify dev emulation.
 export default defineConfig({
-  plugins: [react(), netlify({ edgeFunctions: { enabled: false } }) as PluginOption], // netlify(): Functions and redirects inside `vite dev`
-  server: {
-    port: 8080,
-    strictPort: true,
+  test: {
+    include: ['netlify/**/*.test.ts'],
+    testTimeout: 120_000, // bundling takes a few seconds, longer on a cold CI runner
   },
 });

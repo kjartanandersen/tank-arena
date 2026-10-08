@@ -6,7 +6,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "typecheck": "tsc -p . && tsc -p netlify"
+    "typecheck": "tsc -p . && tsc -p netlify",
+    "test": "vitest run"
   },
   "dependencies": {
     "@arena/contracts": "workspace:*",
@@ -22,11 +23,13 @@
   "devDependencies": {
     "@netlify/functions": "^6.0.1",
     "@netlify/vite-plugin": "^3.0.1",
+    "@netlify/zip-it-and-ship-it": "^16.3.0",
     "@types/node": "catalog:",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.1.1",
     "typescript": "catalog:",
-    "vite": "^8.3.1"
+    "vite": "^8.3.1",
+    "vitest": "catalog:"
   }
 }
