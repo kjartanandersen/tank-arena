@@ -9,9 +9,16 @@ const { arena } = parseLevel({
   rows: ['#######', '#.....#', '#..P..#', '#.....#', '#######'],
 });
 
-const spawnTank = (heading = 0): Tank => ({ id: 0, x: 168, y: 120, heading, turret: 0 });
+const spawnTank = (heading = 0): Tank => ({
+  id: 0,
+  x: 168,
+  y: 120,
+  heading,
+  turret: 0,
+  cooldown: 0,
+});
 const drive = (tank: Tank, move: number, ticks: number) => {
-  for (let i = 0; i < ticks; i++) updateTank(tank, { move, aim: 0 }, arena);
+  for (let i = 0; i < ticks; i++) updateTank(tank, { move, aim: 0, fire: false }, arena);
 };
 
 describe('tank movement', () => {
@@ -51,7 +58,7 @@ describe('tank movement', () => {
 
   it('points the turret wherever the command aims', () => {
     const tank = spawnTank();
-    updateTank(tank, { move: 0, aim: encodeAim(2) }, arena);
+    updateTank(tank, { move: 0, aim: encodeAim(2), fire: false }, arena);
     expect(tank.turret).toBeCloseTo(2, 4);
   });
 });

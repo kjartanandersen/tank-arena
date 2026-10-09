@@ -9,6 +9,7 @@ import {
 
 export { angleDelta } from '@arena/core';
 export {
+  BULLET_RADIUS,
   Move,
   PLAYER_ID,
   SIM_VERSION,
@@ -17,6 +18,7 @@ export {
   TILE_SIZE,
   Tile,
   encodeAim,
+  type Bullet,
   type LevelData,
   type Tank,
   type TankCommand,
