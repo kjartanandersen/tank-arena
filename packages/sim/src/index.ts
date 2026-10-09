@@ -1,3 +1,12 @@
+export {
+  BULLET_BOUNCES,
+  BULLET_RADIUS,
+  BULLET_SPEED,
+  advanceBullet,
+  bulletsTouch,
+  createBullet,
+  type Bullet,
+} from './bullet.ts';
 export { Move, decodeAim, encodeAim, type TankCommand } from './command.ts';
 export {
   TILE_SIZE,
@@ -11,6 +20,9 @@ export {
 } from './level.ts';
 export {
   DRIVE_ALIGNMENT,
+  FIRE_COOLDOWN,
+  MAX_BULLETS_PER_TANK,
+  MUZZLE_DISTANCE,
   TANK_RADIUS,
   TANK_SPEED,
   TANK_TURN_RATE,

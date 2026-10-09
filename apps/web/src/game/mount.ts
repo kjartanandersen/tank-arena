@@ -1,14 +1,7 @@
 import { Application, type Container } from 'pixi.js';
-import {
-  PLAYER_ID,
-  TRAINING_GROUND,
-  angleDelta,
-  createMatch,
-  encodeAim,
-  type Tank,
-} from '@arena/game';
+import { PLAYER_ID, TRAINING_GROUND, createMatch, encodeAim, type Tank } from '@arena/game';
 import { createInput, type Input } from './input.ts';
-import { createScene, type TankPose } from './render.ts';
+import { createScene, snapshot } from './render.ts';
 
 const STEP_MS = 1000 / 60;
 const MAX_STEPS_PER_FRAME = 5;
@@ -40,14 +33,18 @@ export function mountGame(host: HTMLElement): () => void {
       const scene = createScene(match.world);
       app.stage.addChild(scene.root);
 
-      let previous = poseOf(player);
+      let previous = snapshot(match.world);
       let acc = 0;
       app.ticker.add((ticker) => {
         acc += ticker.deltaMS;
         let steps = 0;
         while (acc >= STEP_MS && steps < MAX_STEPS_PER_FRAME) {
-          previous = poseOf(player);
-          match.step({ move: input?.move() ?? 0, aim: aimAt(player, scene.root, input) });
+          previous = snapshot(match.world);
+          match.step({
+            move: input?.move() ?? 0,
+            aim: aimAt(player, scene.root, input),
+            fire: input?.takeFire() ?? false,
+          });
           acc -= STEP_MS;
           steps += 1;
         }
@@ -62,7 +59,7 @@ export function mountGame(host: HTMLElement): () => void {
         );
 
         // Draw between the last two ticks, so motion is smooth at any frame rate.
-        scene.setPlayerPose(interpolate(previous, poseOf(player), acc / STEP_MS));
+        scene.render(previous, match.world, acc / STEP_MS);
       });
     });
 
@@ -79,17 +76,4 @@ function aimAt(tank: Tank, world: Container, input: Input | undefined): number {
   if (!pointer) return encodeAim(tank.turret);
   const target = world.toLocal(pointer);
   return encodeAim(Math.atan2(target.y - tank.y, target.x - tank.x));
-}
-
-function poseOf(tank: Tank): TankPose {
-  return { x: tank.x, y: tank.y, heading: tank.heading, turret: tank.turret };
-}
-
-function interpolate(from: TankPose, to: TankPose, t: number): TankPose {
-  return {
-    x: from.x + (to.x - from.x) * t,
-    y: from.y + (to.y - from.y) * t,
-    heading: from.heading + angleDelta(from.heading, to.heading) * t,
-    turret: from.turret + angleDelta(from.turret, to.turret) * t,
-  };
 }

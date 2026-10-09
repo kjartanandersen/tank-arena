@@ -1,5 +1,8 @@
 import { TAU, wrapAngle } from '@arena/core';
 
+/**
+ *
+ */
 export const Move = { Up: 1, Down: 2, Left: 4, Right: 8 } as const;
 
 /**
@@ -11,6 +14,8 @@ export interface TankCommand {
   readonly move: number;
   /** Turret aim as an unsigned 16-bit angle: 0 points along +x, and it increases clockwise on screen. */
   readonly aim: number;
+  /** Try to fire this tick */
+  readonly fire: boolean;
 }
 
 const AIM_STEPS = 65536;

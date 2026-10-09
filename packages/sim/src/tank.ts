@@ -10,6 +10,12 @@ export const TANK_SPEED = 2.5;
 export const TANK_TURN_RATE = 0.1;
 /** The tank only drives once its body is within this angle (about 20 degrees) of where it should face. */
 export const DRIVE_ALIGNMENT = 0.35;
+/** Ticks between shots (0.2 s). */
+export const FIRE_COOLDOWN = 12;
+/** A tank can't fire while this many of its bullets are still flying. */
+export const MAX_BULLETS_PER_TANK = 5;
+/** Distance from the tank's centre to the tip of the barrel, where bullets leave. */
+export const MUZZLE_DISTANCE = 26;
 
 export interface Tank {
   readonly id: number;
@@ -19,6 +25,8 @@ export interface Tank {
   heading: number;
   /** Turret direction in radians, in world space (independent of the body). */
   turret: number;
+  /** Ticks until the tank may fire again. 0 means ready. */
+  cooldown: number;
 }
 
 export function updateTank(tank: Tank, cmd: TankCommand, arena: Arena): void {
